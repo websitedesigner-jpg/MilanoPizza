@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milano Pizza – Pizzeria, Kebab & Vöner Helsinki</title>
+  <meta name="description" content="Milano Pizza – tuoreita pizzoja, kebabeja, vönereitä, falafeleita ja salaatteja Helsingissä. Ostostie 4, Helsinki." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #111009;
+      --bg2:      #171410;
+      --bg3:      #1E1A14;
+      --surface:  #231F18;
+      --border:   rgba(255,255,255,0.08);
+      --cream:    #F5EFE3;
+      --muted:    rgba(245,239,227,0.45);
+      --gold:     #C9973A;
+      --red:      #C8392B;
+      --red-light:#D94436;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 60px;
+      background: rgba(17,16,9,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--cream); text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-phone {
+      font-size: 0.85rem !important; font-weight: 600 !important;
+      color: var(--gold) !important; text-transform: none !important;
+      letter-spacing: 0.02em !important;
+    }
+    .nav-phone:hover { color: var(--cream) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 5rem;
+      background: var(--bg);
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.3;
+    }
+    .hero-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700; line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 0.25em;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-tagline {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: var(--muted); font-weight: 300;
+      max-width: 480px; margin: 1.25rem auto 2.75rem;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      text-decoration: none; border-radius: 2px;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      transition: all 0.2s;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--bg);
+    }
+    .btn-gold:hover { background: #D9A840; }
+    .btn-border {
+      border: 1px solid rgba(245,239,227,0.25);
+      color: var(--cream);
+    }
+    .btn-border:hover { border-color: var(--cream); }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 6rem 1.5rem; }
+    .section-inner { max-width: 1040px; margin: 0 auto; }
+    .section-label {
+      display: block;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--cream); margin-bottom: 2.5rem;
+    }
+    .rule {
+      border: none; height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0.3; margin-bottom: 3rem;
+    }
+
+    /* ── PIZZA TABLE ── */
+    .pizza-section { background: var(--bg2); }
+    .pizza-note {
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 2rem; letter-spacing: 0.03em;
+    }
+    .pizza-note strong { color: var(--gold); }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    thead tr { border-bottom: 1px solid var(--gold); }
+    thead th {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); text-align: right;
+    }
+    thead th:first-child { text-align: left; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    td { padding: 0.8rem 0.75rem; vertical-align: middle; }
+    .td-name { text-align: left; }
+    .pizza-num { color: var(--gold); font-size: 0.7rem; font-weight: 700; margin-right: 0.4rem; }
+    .pizza-name { font-size: 0.9rem; font-weight: 600; color: var(--cream); }
+    .pizza-top { font-size: 0.75rem; color: var(--muted); display: block; margin-top: 0.1rem; }
+    td.price { text-align: right; font-size: 0.85rem; font-weight: 500; white-space: nowrap; color: var(--cream); }
+
+    /* ── KEBAB / KANAKEBAB ── */
+    .kebab-section { background: var(--bg3); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .menu-list { list-style: none; }
+    .menu-list li {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .menu-list li:last-child { border-bottom: none; }
+    .item-code { font-size: 0.65rem; font-weight: 700; color: var(--gold); min-width: 30px; }
+    .item-name { font-size: 0.88rem; color: var(--cream); flex: 1; }
+    .item-price { font-size: 0.88rem; font-weight: 600; color: var(--cream); white-space: nowrap; }
+
+    /* ── SALAATIT / VÖNER / FALAFEL / KANAFILE ── */
+    .other-section { background: var(--bg2); }
+    .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+    @media (max-width: 900px) { .four-col { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 560px) { .four-col { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; gap: 2rem; } }
+    .menu-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-style: italic;
+      color: var(--cream); margin-bottom: 0.35rem;
+    }
+    .menu-col-note {
+      font-size: 0.72rem; color: var(--muted);
+      margin-bottom: 1.2rem; line-height: 1.5;
+    }
+    .menu-col hr { border: none; height: 1px; background: var(--gold); opacity: 0.4; margin-bottom: 1.2rem; }
+
+    /* ── LOCATIONS ── */
+    .locations-section { background: var(--surface); }
+    .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 0; }
+    @media (max-width: 640px) { .loc-grid { grid-template-columns: 1fr; } }
+    .loc-card {
+      background: var(--bg3);
+      padding: 2.5rem 2rem;
+    }
+    .loc-tag {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 0.6rem;
+    }
+    .loc-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; margin-bottom: 1.25rem; color: var(--cream);
+    }
+    .loc-info { list-style: none; }
+    .loc-info li { font-size: 0.85rem; color: var(--muted); padding: 0.25rem 0; }
+    .loc-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+    .btn-sm {
+      text-decoration: none; border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.75rem; font-weight: 500;
+      padding: 0.5rem 1rem; border-radius: 2px;
+      transition: all 0.2s; letter-spacing: 0.05em;
+    }
+    .btn-sm:hover { border-color: var(--cream); color: var(--cream); }
+    .btn-sm-gold { border-color: rgba(201,151,58,0.5); color: var(--gold); }
+    .btn-sm-gold:hover { border-color: var(--gold); background: rgba(201,151,58,0.08); }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--bg);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .contact-section h2 { margin-bottom: 0.5rem; }
+    .contact-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2.5rem; font-weight: 300; }
+    .contact-phone {
+      display: inline-block;
+      font-size: 2rem; font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold); text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .contact-phone:hover { color: var(--cream); }
+    .contact-addr {
+      margin-top: 1.5rem;
+      font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      padding: 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    footer p { font-size: 0.72rem; color: rgba(245,239,227,0.2); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); border-radius: 2px; }
+    .mobile-menu {
+      display: none; position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(17,16,9,0.98); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem; z-index: 99;
+      flex-direction: column; gap: 1.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .mobile-menu .mob-phone { color: var(--gold); text-transform: none; font-size: 1rem; }
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 4rem 1rem; }
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">Milano<span>Pizza</span></a>
+  <ul class="nav-links">
+    <li><a href="#menu" onclick="event.preventDefault();document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Menu</a></li>
+    <li><a href="#kebab" onclick="event.preventDefault();document.getElementById('kebab').scrollIntoView({behavior:'smooth'})">Kebab</a></li>
+    <li><a href="#muut" onclick="event.preventDefault();document.getElementById('muut').scrollIntoView({behavior:'smooth'})">Muut annokset</a></li>
+    <li><a href="#aukioloajat" onclick="event.preventDefault();document.getElementById('aukioloajat').scrollIntoView({behavior:'smooth'})">Aukioloajat</a></li>
+    <li><a href="#locations" onclick="event.preventDefault();document.getElementById('locations').scrollIntoView({behavior:'smooth'})">Toimipiste</a></li>
+    <li><a href="tel:+358503750675" class="nav-phone">050 375 0675</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Valikko">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="document.getElementById('mobileMenu').classList.remove('open');document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Pizza</a>
+  <a onclick="document.getElementById('mobileMenu').classList.remove('open');document.getElementById('kebab').scrollIntoView({behavior:'smooth'})">Kebab</a>
+  <a onclick="document.getElementById('mobileMenu').classList.remove('open');document.getElementById('muut').scrollIntoView({behavior:'smooth'})">Muut annokset</a>
+  <a onclick="document.getElementById('mobileMenu').classList.remove('open');document.getElementById('aukioloajat').scrollIntoView({behavior:'smooth'})">Aukioloajat</a>
+  <a href="tel:+358503750675" class="mob-phone">050 375 0675</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <span class="hero-label">Pizzeria &nbsp;·&nbsp; Kebab &nbsp;·&nbsp; Vöner &nbsp;·&nbsp; Helsinki</span>
+  <h1>Milano<br><em>Pizza</em></h1>
+  <p class="hero-tagline">Tuoreita raaka-aineita, käsintehtyä taikinaa ja rakkaudella valmistettuja annoksia. Jokainen annos tilauksesta.</p>
+  <div class="hero-actions">
+    <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="btn btn-gold" style="cursor:pointer;border:none;font-family:inherit">Katso ruokalista</button>
+    <a href="tel:+358503750675" class="btn btn-border">050 375 0675</a>
+  </div>
+</section>
+
+<!-- PIZZAT -->
+<section class="pizza-section" id="menu">
+  <div class="section-inner">
+    <span class="section-label">Ruokalista</span>
+    <h2>Pizzat</h2>
+    <hr class="rule" />
+    <p class="pizza-note"><strong>Kaikki annokset sisältävät 0,33 l juoman.</strong> &nbsp; Norm = normaali &nbsp;·&nbsp; Pannu = pannupizza &nbsp;·&nbsp; Perhe = perhekoko</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Pizza</th>
+          <th>Norm</th>
+          <th>Pannu</th>
+          <th>Perhe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-name"><span class="pizza-num">1.</span><span class="pizza-name">Helsinki</span><span class="pizza-top">Salami, herkkusieni, pepperoni, pekoni, ranskalaisia, currykastike</span></td><td class="price">13,90</td><td class="price">19,00</td><td class="price">23,00</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">2.</span><span class="pizza-name">Bolognese</span><span class="pizza-top">Jauheliha</span></td><td class="price">9,90</td><td class="price">14,90</td><td class="price">18,00</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">3.</span><span class="pizza-name">Frutti di Mare</span><span class="pizza-top">Tonnikala, simpukka, katkarapu</span></td><td class="price">10,90</td><td class="price">15,90</td><td class="price">19,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">4.</span><span class="pizza-name">Julia</span><span class="pizza-top">Kinkku, ananas, katkarapu, aurajuusto</span></td><td class="price">11,90</td><td class="price">16,00</td><td class="price">19,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">5.</span><span class="pizza-name">Venice</span><span class="pizza-top">Kirsikkatomaatti, sipuli, aurinkokuivattu tomaatti, basilika</span></td><td class="price">12,90</td><td class="price">18,00</td><td class="price">19,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">6.</span><span class="pizza-name">Pepperoni</span><span class="pizza-top">Pepperoni, herkkusieni, rucola, sipuli</span></td><td class="price">12,90</td><td class="price">17,90</td><td class="price">21,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">7.</span><span class="pizza-name">Americano</span><span class="pizza-top">Kinkku, ananas, aurajuusto</span></td><td class="price">10,90</td><td class="price">14,90</td><td class="price">18,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">8.</span><span class="pizza-name">Empire</span><span class="pizza-top">Salami, kinkku, katkarapu, tuplajuusto</span></td><td class="price">12,90</td><td class="price">18,90</td><td class="price">22,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">9.</span><span class="pizza-name">Mexicana</span><span class="pizza-top">Pepperoni, jalopeno, ananas, mexicanakastike</span></td><td class="price">11,90</td><td class="price">17,90</td><td class="price">21,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">10.</span><span class="pizza-name">Kebab</span><span class="pizza-top">Kebab, punasipuli, tomaatti, jalopeno</span></td><td class="price">11,90</td><td class="price">17,90</td><td class="price">21,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">11.</span><span class="pizza-name">BBQ</span><span class="pizza-top">Kana, punasipuli, pekoni, bbq-kastike</span></td><td class="price">11,90</td><td class="price">17,90</td><td class="price">21,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">12.</span><span class="pizza-name">Special Smetana</span><span class="pizza-top">Kebab, punasipuli, jalopeno, tomaatti, fetajuusto, smetana</span></td><td class="price">12,90</td><td class="price">18,90</td><td class="price">22,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">13.</span><span class="pizza-name">Fresco</span><span class="pizza-top">Herkkusieni, kapris, parsa, paprika, oregano</span></td><td class="price">11,90</td><td class="price">17,90</td><td class="price">21,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">14.</span><span class="pizza-name">Yöjalka</span><span class="pizza-top">Kinkku, jalopeno, salami, katkarapu</span></td><td class="price">13,90</td><td class="price">19,90</td><td class="price">23,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">15.</span><span class="pizza-name">Feta</span><span class="pizza-top">Sipuli, tomaatti, fetajuusto, musta oliivi</span></td><td class="price">10,90</td><td class="price">16,00</td><td class="price">19,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">16.</span><span class="pizza-name">Milano</span><span class="pizza-top">Salami, kinkku, tuplajuusto, katkarapu</span></td><td class="price">13,90</td><td class="price">19,90</td><td class="price">23,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">17.</span><span class="pizza-name">Kanakebab</span><span class="pizza-top">Kanakebab, currykastike, jalopeno, ranskalaisia</span></td><td class="price">13,90</td><td class="price">19,90</td><td class="price">23,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">18.</span><span class="pizza-name">Jalopeno</span><span class="pizza-top">Pepperoni, jalopeno</span></td><td class="price">11,90</td><td class="price">17,90</td><td class="price">21,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">19.</span><span class="pizza-name">Papa's Special</span><span class="pizza-top">Sipuli, oliivi, paprika, salami</span></td><td class="price">12,90</td><td class="price">18,90</td><td class="price">22,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">20.</span><span class="pizza-name">Super</span><span class="pizza-top">Kinkku, salami, pekoni, kananmuna</span></td><td class="price">12,90</td><td class="price">18,90</td><td class="price">22,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">21.</span><span class="pizza-name">Viisi Juustoa</span><span class="pizza-top">Feta-, aura-, mozzarella-, cheddar- ja edamjuusto</span></td><td class="price">12,00</td><td class="price">17,00</td><td class="price">20,00</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">22.</span><span class="pizza-name">Roma</span><span class="pizza-top">Pepperoni, bbq-kastike, pekoni, pesto, rucola</span></td><td class="price">13,90</td><td class="price">19,90</td><td class="price">23,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">23.</span><span class="pizza-name">Genova</span><span class="pizza-top">Lohi, simpukka, sitruuna, katkarapu, kirsikkatomaatti</span></td><td class="price">17,90</td><td class="price">23,90</td><td class="price">28,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">24.</span><span class="pizza-name">Dillinger</span><span class="pizza-top">Kinkku, salami, jauheliha, sipuli</span></td><td class="price">12,90</td><td class="price">18,90</td><td class="price">22,90</td></tr>
+        <tr><td class="td-name"><span class="pizza-num">25.</span><span class="pizza-name">Oma Valinta</span><span class="pizza-top">4 täytettä</span></td><td class="price">13,90</td><td class="price">19,90</td><td class="price">23,90</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- KEBAB & KANAKEBAB -->
+<section class="kebab-section" id="kebab">
+  <div class="section-inner">
+    <div class="two-col">
+
+      <!-- KEBAB -->
+      <div>
+        <span class="section-label">Liha</span>
+        <h2>Kebab</h2>
+        <hr class="rule" />
+        <ul class="menu-list">
+          <li><span class="item-code">K1</span><span class="item-name">Ranskalaisilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">K2</span><span class="item-name">Riisillä</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">K3</span><span class="item-name">Lohkoperunoilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">K4</span><span class="item-name">Iskender</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">K5</span><span class="item-name">Rulla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">K6</span><span class="item-name">Pitakebab</span><span class="item-price">10,90 €</span></li>
+          <li><span class="item-code">K7</span><span class="item-name">Kebab-Box</span><span class="item-price">10,90 €</span></li>
+          <li><span class="item-code">K8</span><span class="item-name">Kebab Burger</span><span class="item-price">10,90 €</span></li>
+        </ul>
+      </div>
+
+      <!-- KANAKEBAB -->
+      <div>
+        <span class="section-label">Kana</span>
+        <h2>Kanakebab</h2>
+        <hr class="rule" />
+        <ul class="menu-list">
+          <li><span class="item-code">KK1</span><span class="item-name">Ranskalaisilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KK2</span><span class="item-name">Riisillä</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KK3</span><span class="item-name">Lohkoperunoilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KK4</span><span class="item-name">Rulla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KK5</span><span class="item-name">Kanakebab Pita</span><span class="item-price">10,90 €</span></li>
+          <li><span class="item-code">KK6</span><span class="item-name">Kanakebab Box</span><span class="item-price">10,90 €</span></li>
+          <li><span class="item-code">KK7</span><span class="item-name">Kanakebab Burger</span><span class="item-price">10,90 €</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MUUT ANNOKSET -->
+<section class="other-section" id="muut">
+  <div class="section-inner">
+    <span class="section-label">Muut annokset</span>
+    <h2>Salaatit, Vöner, Falafel &amp; Kanafile</h2>
+    <hr class="rule" />
+    <div class="four-col">
+
+      <!-- SALAATIT -->
+      <div class="menu-col">
+        <h3>Salaatit</h3>
+        <hr />
+        <p class="menu-col-note">Kaikki annokset sisältävät 0,33 l juoman. Kastike valittavissa: valkosipulikastike, chilikastike, sour cream kastike tai paprikakastike.</p>
+        <ul class="menu-list">
+          <li><span class="item-code">S1</span><span class="item-name">Kreikkalainen salaatti<span style="display:block;font-size:0.72rem;color:var(--muted);margin-top:2px">Salaatti, kurkku, tomaatti, paprika, oliivi, feta, oliiviöljy</span></span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">S2</span><span class="item-name">Fetasalaatti<span style="display:block;font-size:0.72rem;color:var(--muted);margin-top:2px">Salaatti, kurkku, tomaatti, sipuli, rucola, oliiviöljy</span></span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">S3</span><span class="item-name">Kananmunasalaatti<span style="display:block;font-size:0.72rem;color:var(--muted);margin-top:2px">Salaatti, kurkku, tomaatti, paprika, sipuli, ananas, kananmuna, oliiviöljy</span></span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">S4</span><span class="item-name">Katkarapusalaatti<span style="display:block;font-size:0.72rem;color:var(--muted);margin-top:2px">Salaatti, kurkku, tomaatti, paprika, sipuli, katkarapu, feta, oliiviöljy</span></span><span class="item-price">11,90 €</span></li>
+        </ul>
+      </div>
+
+      <!-- VÖNER -->
+      <div class="menu-col">
+        <h3>Vöner</h3>
+        <hr />
+        <p class="menu-col-note">Vöner, aurinkokuivattutomaatti, savuchilipaprika, vegaanijuusto, oregano, valkosipuli.</p>
+        <ul class="menu-list">
+          <li><span class="item-code">V1</span><span class="item-name">Ranskalaisilla</span><span class="item-price">12,00 €</span></li>
+          <li><span class="item-code">V2</span><span class="item-name">Riisillä</span><span class="item-price">12,00 €</span></li>
+          <li><span class="item-code">V3</span><span class="item-name">Lohkoperunoilla</span><span class="item-price">12,00 €</span></li>
+          <li><span class="item-code">V4</span><span class="item-name">Rulla</span><span class="item-price">12,00 €</span></li>
+          <li><span class="item-code">V5</span><span class="item-name">Vöner-Pita</span><span class="item-price">11,00 €</span></li>
+          <li><span class="item-code">V6</span><span class="item-name">Vöner Pizza</span><span class="item-price">13,00 €</span></li>
+        </ul>
+      </div>
+
+      <!-- FALAFEL -->
+      <div class="menu-col">
+        <h3>Falafel</h3>
+        <hr />
+        <p class="menu-col-note">Kaikki annokset sisältävät 0,33 l juoman.</p>
+        <ul class="menu-list">
+          <li><span class="item-code">F1</span><span class="item-name">Ranskalaisilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">F2</span><span class="item-name">Riisillä</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">F3</span><span class="item-name">Lohkoperunoilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">F4</span><span class="item-name">Rulla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">F5</span><span class="item-name">Pita Falafel</span><span class="item-price">10,90 €</span></li>
+        </ul>
+      </div>
+
+      <!-- KANAFILE -->
+      <div class="menu-col">
+        <h3>Kanafile</h3>
+        <hr />
+        <p class="menu-col-note">&nbsp;</p>
+        <ul class="menu-list">
+          <li><span class="item-code">KF1</span><span class="item-name">Ranskalaisilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KF2</span><span class="item-name">Riisillä</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KF3</span><span class="item-name">Lohkoperunoilla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KF4</span><span class="item-name">Rulla</span><span class="item-price">11,90 €</span></li>
+          <li><span class="item-code">KF4</span><span class="item-name">Kanafile-Pita</span><span class="item-price">10,90 €</span></li>
+          <li><span class="item-code">KF7</span><span class="item-name">Kanafile Burger</span><span class="item-price">10,90 €</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOIMIPISTE -->
+<section class="locations-section" id="locations">
+  <div class="section-inner">
+    <span class="section-label">Sijainti</span>
+    <h2>Toimipiste</h2>
+    <hr class="rule" />
+    <div class="loc-grid" style="grid-template-columns: 1fr; max-width: 480px;">
+      <div class="loc-card">
+        <span class="loc-tag">Kontulan ostoskeskus</span>
+        <h3>Milano Pizza</h3>
+        <ul class="loc-info">
+          <li>Ostostie 4, 00940 Helsinki</li>
+          <li>050 375 0675</li>
+        </ul>
+        <table id="aukioloajat" style="margin-top:1.25rem;width:100%;border-collapse:collapse;font-size:0.82rem;">
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:0.4rem 0;color:var(--muted)">Maanantai</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">10.00 – 00.00</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:0.4rem 0;color:var(--muted)">Tiistai</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">10.00 – 00.00</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:0.4rem 0;color:var(--muted)">Keskiviikko</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">10.00 – 06.00</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:0.4rem 0;color:var(--muted)">Torstai</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">10.00 – 00.00</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:0.4rem 0;color:var(--muted)">Perjantai</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">11.00 – 05.00</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:0.4rem 0;color:var(--muted)">Lauantai</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">11.00 – 05.00</td></tr>
+            <tr><td style="padding:0.4rem 0;color:var(--muted)">Sunnuntai</td><td style="padding:0.4rem 0;text-align:right;color:var(--cream)">10.00 – 00.00</td></tr>
+          </tbody>
+        </table>
+        <div class="loc-actions">
+          <a href="https://maps.app.goo.gl/uwXwQBqP4zU8JyJh9?g_st=ic" class="btn-sm" target="_blank" rel="noopener">Google Maps</a>
+          <a href="tel:+358503750675" class="btn-sm btn-sm-gold">Soita</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <span class="section-label">Tilaukset</span>
+    <h2>Soita ja tilaa.</h2>
+    <p class="contact-sub">Otamme tilauksia vastaan puhelimitse. Tervetuloa myös paikan päälle.</p>
+    <a href="tel:+358503750675" class="contact-phone">050 375 0675</a>
+    <p class="contact-addr">Kontulan ostoskeskus, Ostostie 4 &nbsp;·&nbsp; 00940 Helsinki</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Milano Pizza Helsinki. Kaikki oikeudet pidätetään.</p>
+</footer>
+
+</body>
+</html>
